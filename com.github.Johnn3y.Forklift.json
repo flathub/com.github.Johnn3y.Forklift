@@ -53,8 +53,8 @@
       "sources" : [
         {
           "url" : "https://github.com/ytdl-org/youtube-dl",
-          "tag" : "2020.03.24",
-          "commit" : "049c0486bbd57a9bb5fb5a6a5eeff82fd4ac03ff",
+          "tag" : "2020.05.08",
+          "commit" : "b002bc433a0ba151b7c2f42ab6f1db9a27ed1ecd",
           "type" : "git"
         }
       ],
