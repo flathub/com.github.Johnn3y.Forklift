@@ -1,7 +1,7 @@
 {
   "id" : "com.github.Johnn3y.Forklift",
   "runtime" : "org.gnome.Platform",
-  "runtime-version" : "3.36",
+  "runtime-version" : "40",
   "sdk" : "org.gnome.Sdk",
   "command" : "Forklift",
   "finish-args" : [
@@ -12,38 +12,22 @@
     "--talk-name=org.freedesktop.Notifications",
     "--filesystem=home"
   ],
+  "add-extensions": {
+      "org.freedesktop.Platform.ffmpeg-full": {
+          "directory": "lib/ffmpeg",
+          "version": "20.08",
+          "add-ld-path": "."
+      }
+  },
+  "cleanup-commands": [
+      "mkdir -p ${FLATPAK_DEST}/lib/ffmpeg"
+  ],
   "cleanup" : [
     "/include",
     "/lib/pkgconfig"
   ],
   "modules" : [
     "shared-modules/lame/lame-3.99.5.json",
-    {
-      "name" : "ffmpeg",
-      "config-opts" : [
-        "--enable-shared",
-        "--disable-static",
-        "--disable-doc",
-        "--disable-ffplay",
-        "--disable-devices",
-        "--enable-gnutls",
-        "--enable-libmp3lame",
-        "--enable-libvorbis"
-      ],
-      "sources" : [
-        {
-          "url" : "https://ffmpeg.org/releases/ffmpeg-4.2.1.tar.xz",
-          "sha256" : "cec7c87e9b60d174509e263ac4011b522385fd0775292e1670ecc1180c9bb6d4",
-          "type" : "archive"
-        }
-      ],
-      "cleanup" : [
-        "/share/ffmpeg"
-      ],
-      "post-install" : [
-        "install -Dm644 COPYING.LGPLv3 /app/share/licenses/ffmpeg/COPYING"
-      ]
-    },
     {
       "name" : "youtube-dl",
       "buildsystem" : "simple",
@@ -53,8 +37,8 @@
       "sources" : [
         {
           "url" : "https://github.com/ytdl-org/youtube-dl",
-          "tag" : "2020.05.08",
-          "commit" : "b002bc433a0ba151b7c2f42ab6f1db9a27ed1ecd",
+          "tag" : "2021.06.06",
+          "commit" : "b224cf39d53bd16bcfda2ac493712c3ff449ecb8",
           "type" : "git"
         }
       ],
@@ -105,9 +89,12 @@
       "sources" : [
         {
           "url" : "https://github.com/Johnn3y/Forklift",
-          "branch" : "master",
-          "commit" : "e39bb92e24fd8ca1f0f0f051b22b6e230e9dc999",
+          "commit" : "9a1fa45d7a741cf518049b31f792b6d6c1ef9d13",
           "type" : "git"
+        },
+        {
+          "type" : "patch",
+          "path" : "appdata.patch"
         }
       ]
     }
